@@ -7,45 +7,45 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 import sys, time
 
-#Pobranie od użytkownika loginu i hasła.
+#Get login and password
 print('Please type your gmail login.')
 loginInput = input()
 print('Please type the password to your email account.')
 passwordInput = input()
 
-#Włączenie przeglądarki na stronie GMail.
+#Go to GMail in a browser
 browser = webdriver.Safari()
 browser.get('http://www.gmail.com')
 
-#Wpisanie loginu podanego przez użytkownika i przejście dalej.
+#Parse login obtained earlier
 login = browser.find_element_by_name('identifier')
 login.send_keys(loginInput)
 buttonNext = browser.find_element_by_id('identifierNext').click()
 time.sleep(2)
 
-#Wpisanie hasła i zalogowanie się do poczty.
+#Parse password obtained earlier and log in
 password = browser.find_element_by_name('password')
 password.send_keys(passwordInput)
 loginButton = browser.find_element_by_id('passwordNext').click()
 print('''
-Zalogowałeś się na swoją pocztę.
-Podaj adres email osoby, do której chcesz wysłać maila.
+You are logged in to you email account.
+Type email address of your recipient.
         ''')
 
-#Dodanie adresu email adresata.
+#Add recipient email address
 sendTo = input()
 createNewMsg = browser.find_element_by_id(':i1').click()
 time.sleep(1)
 toArea = browser.find_element_by_name('to')
 toArea.send_keys(sendTo)
 
-#Dodanie treści maila.
+#Add email content
 messageInput = browser.find_element_by_id(':os')
 messageInput.click()
-print('Podaj treść wiadomości.')
+print('Add message.')
 msg = input()
 messageInput.send_keys(msg)
 
-#Wyślij. (Docelowo zapytanie, czy na pewno chcesz wysłać wiadomość.)
+#Send.
 sendButton = browser.find_element_by_id(':l3').click()
-print('Wiadomość została wysłana.')
+print('The email is sent.')
