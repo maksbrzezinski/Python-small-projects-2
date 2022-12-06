@@ -6,12 +6,12 @@
 
 import webbrowser, sys, pyperclip
 if len(sys.argv) > 1:
-    #Pobranie adresu wiersza poleceń
+    #Gets addres
     address = ' '.join(sys.argv[1:])
 else:
-    #Pobranie adresu ze schowka.
+    #Gets address from a clipboard
     address = pyperclip.paste()
 
 webbrowser.open('http://www.google.pl/maps/place/' + address)
 
-#TODO: Pobranie adresu ze schowka.
+#TODO: Get address from the clipboard
